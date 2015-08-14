@@ -1,0 +1,43 @@
+//load angularjs
+require('angular');
+
+//load module dependencies
+{%for module in modules %}
+require("{{module.lib}}");
+{%endfor%}
+
+
+var app = angular.module('{{name}}',[{%for dep in dependencies %}'{{dep}}'{%if !loop.last%},{%endif%}{%endfor%}]);
+
+//templates
+var views = {};
+{%for tmpl in getFiles('views')%}
+views['{{tmpl.name}}'] = require('{{tmpl.file}}');
+{%endfor%}
+app.value('Views',views);
+
+//controllers
+var controllers = {};
+{%for ctrl in getFiles('controllers')%}
+controllers['{{ctrl.name}}'] = require('{{ctrl.file}}');
+{%endfor%}
+app.value('Controllers',controllers);
+
+
+
+//Route configuration
+app.config(function($routeProvider){
+   console.log('App::registering routes');
+  {%for route in routes%}
+    $routeProvider.when("{{route.path}}",{template:require("../../views/{{route.view}}"),controller:controllers["{{route.controller}}"].{{route.action}}});
+  {%endfor%}
+});
+
+
+//register services
+{%for service in getFiles('services')%}
+app.factory('{{service.name}}Service',require('{{service.file}}'));
+{%endfor%}
+
+//load entry point
+require('../../{{entrypoint}}')(app);

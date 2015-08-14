@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+var program = require('commander');
+var npmPackage = require('../package.json');
+var Convular = require('../lib/convular');
+var Path = require('path');
+
+///CONST
+var DEFAULT_PORT = 7001;
+var DEFAULT_ENV = "";
+var DEFAULT_ENTRYPOINT= 'entrypoint.js';
+
+function bootstrap(){
+
+  var options = {
+    basedir: program.basedir ? Path.resolve(program.basedir) : process.cwd(),
+    port:program.port,
+    env: program.env,
+    entrypoint:program.entry
+  };
+
+  return new Convular(options);
+}
+
+
+
+
+program
+  .command('run')
+  .description('Run project')
+  .action(function(){
+
+    var convular = bootstrap();
+    convular.run();
+
+});
+
+program
+  .version(npmPackage.version)
+  .option('-b --basedir <dir>', 'Base directory [default to current working dir]')
+  .option('-w --watch', 'Watch source directory for change')
+  .option('-e --entry <entrypoint>', 'Watch source directory for change')
+  .option('-p --port <number>', 'Port the server will listen to [default: '+DEFAULT_PORT+']',DEFAULT_PORT)
+  .option('--env <environnement>', 'Sets the configuration to use [default: '+DEFAULT_ENV+']',DEFAULT_ENV);
+
+
+program.parse(process.argv);

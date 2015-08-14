@@ -1,0 +1,28 @@
+{
+  "name": "convular",
+  "version": "0.0.1",
+  "description": "AngularJS convention over configuration framework",
+  "main": "./lib/convular.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nicolas Fleury",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.8.1",
+    "css-loader": "^0.15.6",
+    "express": "^4.13.1",
+    "express-livereload": "0.0.24",
+    "file-loader": "^0.8.4",
+    "glob": "^5.0.14",
+    "html-loader": "^0.3.0",
+    "lodash": "^3.10.0",
+    "mustache": "^2.1.3",
+    "swig": "^1.4.2",
+    "webpack": "^1.10.5"
+  },
+  "devDependencies": {
+    "angular": "^1.4.3",
+    "angular-route": "^1.4.3"
+  }
+}
