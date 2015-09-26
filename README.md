@@ -95,3 +95,5 @@ generated based on that template is then used by Webpack
 Templates represents the convention you want to adopt. The template availabe by default assumes
 
 #Webpack configuration
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/nfleury/convular/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
