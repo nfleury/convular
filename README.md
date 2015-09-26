@@ -22,6 +22,7 @@ convular init <myproject>
 
 You will end up with a project with the following structure:
 
+```
 myproject
 |_controllers/
 |_views/
@@ -30,7 +31,7 @@ myproject
 |_entrypoint.js
 |_convular.js
 package.json
-
+```
 Run you application:
 convular run
 
